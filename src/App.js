@@ -9,19 +9,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {
-
   const [movies, setMovies] = useState([]);
   const [favMovies, setFavMovies] = useState([]);
-  const [searchValue, setSearchValue] = useState('')
+  const [searchValue, setSearchValue] = useState('');
 
-<<<<<<< HEAD
   const getMovieRequest = async (searchValue) => {
-    const url = `https://www.omdbapi.com/?s=${searchValue}&apikey=c4aec5cb`;
-  
+    const apiKey = process.env.REACT_APP_OMDB_API_KEY;
+    const url = `https://www.omdbapi.com/?s=${searchValue}&apikey=${apiKey}`;
+
     try {
       const response = await fetch(url);
       const data = await response.json();
-  
+
       if (data.Search) {
         setMovies(data.Search);
       }
@@ -29,43 +28,30 @@ function App() {
       console.error('Error fetching data:', error);
     }
   };
-=======
-      const getMovieRequest = async (searchValue) => {
-        const url = `https://www.omdbapi.com/?s=${searchValue}&apikey=c4aec5cb`;
 
-          const response = await fetch(url);
-          const data = await response.json();
+  useEffect(() => {
+    getMovieRequest(searchValue);
+  }, [searchValue]);
 
-          if (data.Search) {
-            setMovies(data.Search);
-          }
-      };
->>>>>>> origin/main
+  useEffect(() => {
+    const movieFav = JSON.parse(localStorage.getItem('react-app-fav-movies')) || [];
+    setFavMovies(movieFav);
+  }, []);
 
-      useEffect(() => {
-        getMovieRequest(searchValue);
-      }, [searchValue]);
+  const saveToLocalStorage = (items) => {
+    localStorage.setItem('react-app-fav-movies', JSON.stringify(items));
+  };
 
-      useEffect(() => {
-        const movieFav = JSON.parse(localStorage.getItem('react-app-fav-movies')) || [];
-        setFavMovies(movieFav);
-      }, [])
+  const handleFavMovies = (movie) => {
+    const newFavMovies = [...favMovies, movie];
+    setFavMovies(newFavMovies);
+  };
 
-      function saveToLocalStorage(items) {
-        localStorage.setItem('react-app-fav-movies', JSON.stringify(items))
-      }
-
-      function handleFavMovies(movie) {
-        const newFavMovies = [...favMovies, movie]
-        setFavMovies(newFavMovies)
-      }
-
-      function deleteFavMovies(movie) {
-        const newFavMovies = favMovies.filter((fav) => fav.imdbID !== movie.imdbID)
-
-        setFavMovies(newFavMovies);
-        saveToLocalStorage(newFavMovies)
-      }
+  const deleteFavMovies = (movie) => {
+    const newFavMovies = favMovies.filter((fav) => fav.imdbID !== movie.imdbID);
+    setFavMovies(newFavMovies);
+    saveToLocalStorage(newFavMovies);
+  };
 
   return (
     <div className='container-fluid movie-app'>
