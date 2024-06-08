@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/movies-search-app/static/css/main.c6668692.css",
+    "main.js": "/movies-search-app/static/js/main.a124c34b.js",
+    "static/js/453.252cee70.chunk.js": "/movies-search-app/static/js/453.252cee70.chunk.js",
+    "static/media/HD-Earth-Wallpaper-Desktop.jpg": "/movies-search-app/static/media/HD-Earth-Wallpaper-Desktop.dc767c102b0b27bccbf0.jpg",
+    "index.html": "/movies-search-app/index.html",
+    "main.c6668692.css.map": "/movies-search-app/static/css/main.c6668692.css.map",
+    "main.a124c34b.js.map": "/movies-search-app/static/js/main.a124c34b.js.map",
+    "453.252cee70.chunk.js.map": "/movies-search-app/static/js/453.252cee70.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c6668692.css",
+    "static/js/main.a124c34b.js"
+  ]
+}
