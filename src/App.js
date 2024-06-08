@@ -14,6 +14,7 @@ function App() {
   const [favMovies, setFavMovies] = useState([]);
   const [searchValue, setSearchValue] = useState('')
 
+<<<<<<< HEAD
   const getMovieRequest = async (searchValue) => {
     const url = `https://www.omdbapi.com/?s=${searchValue}&apikey=c4aec5cb`;
   
@@ -28,6 +29,18 @@ function App() {
       console.error('Error fetching data:', error);
     }
   };
+=======
+      const getMovieRequest = async (searchValue) => {
+        const url = `https://www.omdbapi.com/?s=${searchValue}&apikey=c4aec5cb`;
+
+          const response = await fetch(url);
+          const data = await response.json();
+
+          if (data.Search) {
+            setMovies(data.Search);
+          }
+      };
+>>>>>>> origin/main
 
       useEffect(() => {
         getMovieRequest(searchValue);
