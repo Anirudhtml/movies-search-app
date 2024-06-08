@@ -14,8 +14,7 @@ function App() {
   const [searchValue, setSearchValue] = useState('');
 
   const getMovieRequest = async (searchValue) => {
-    const apiKey = process.env.REACT_APP_OMDB_API_KEY;
-    const url = `https://www.omdbapi.com/?s=${searchValue}&apikey=${apiKey}`;
+    const url = `https://www.omdbapi.com/?s=${searchValue}&apikey=c4aec5cb`;
 
     try {
       const response = await fetch(url);
